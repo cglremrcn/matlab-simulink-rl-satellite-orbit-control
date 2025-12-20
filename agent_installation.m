@@ -9,10 +9,10 @@ m_sat = 1000;
 max_thrust = 10000;
 r_target = 7e6;
 
-% Uydu baslangic (3D)
+% Uydu baslangic 
 x0 = 7e6;
 y0 = 0;
-z0 = 0;  % Yorunge duzleminde basla
+z0 = 0; 
 vx0 = 0;
 vy0 = 7546;
 vz0 = 0;
@@ -20,7 +20,7 @@ vz0 = 0;
 %% DEBRIS 1 (3D)
 debris1_x0 = 7.3e6;
 debris1_y0 = 0.3e6;
-debris1_z0 = 0.1e6;  % 100 km yukari
+debris1_z0 = 0.1e6;  
 debris1_speed = 6000;
 debris1_angle = atan2(y0 - debris1_y0, x0 - debris1_x0);
 debris1_vx = debris1_speed * cos(debris1_angle);
@@ -30,7 +30,7 @@ debris1_vz = 0;
 %% DEBRIS 2 (3D)
 debris2_x0 = 7.5e6;
 debris2_y0 = -0.4e6;
-debris2_z0 = -0.15e6;  % 150 km asagi
+debris2_z0 = -0.15e6;  
 debris2_speed = 5000;
 debris2_angle = atan2(y0 - debris2_y0, x0 - debris2_x0);
 debris2_vx = debris2_speed * cos(debris2_angle);
@@ -40,7 +40,7 @@ debris2_vz = 0;
 %% DEBRIS 3 (3D)
 debris3_x0 = 7.8e6;
 debris3_y0 = 0.1e6;
-debris3_z0 = 0.05e6;  % 50 km yukari
+debris3_z0 = 0.05e6;  
 debris3_speed = 7000;
 debris3_angle = atan2(y0 - debris3_y0, x0 - debris3_x0);
 debris3_vx = debris3_speed * cos(debris3_angle);
@@ -55,7 +55,7 @@ obsInfo = rlNumericSpec([15 1], ...
 obsInfo.Name = 'Observation';
 obsInfo.Description = '3D Satellite state + 3 Debris positions';
 
-%% ACTION SPACE [3x1] - Kartezyen thrust
+%% ACTION SPACE [3x1] 
 % [thrust_x, thrust_y, thrust_z] - dogrudan X, Y, Z yonunde kuvvet
 actInfo = rlNumericSpec([3 1], ...
     'LowerLimit', [-1; -1; -1], ...
