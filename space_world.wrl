@@ -1,0 +1,184 @@
+#VRML V2.0 utf8
+
+# Uzay Sahnesi - 3 Coplu Debris Avoidance (Gelistirilmis)
+
+WorldInfo {
+  title "Satellite Debris Avoidance - Enhanced"
+}
+
+Background {
+  skyColor [0 0 0.05]
+}
+
+DirectionalLight {
+  direction -1 -1 -1
+  intensity 0.8
+}
+
+# DUNYA
+DEF EARTH Transform {
+  translation 0 0 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.1 0.3 0.7
+          emissiveColor 0.05 0.1 0.2
+        }
+      }
+      geometry Sphere { radius 6.371 }
+    }
+  ]
+}
+
+# UYDU - Basit kutu ve Takip Kamerası
+DEF SATELLITE Transform {
+  translation 7 0 0
+  children [
+    # --- ULTRA TAKİP (Dünyaya Çarpmaz) ---
+    # Bu kamera uyduya çok yakındır (0.5 birim), 
+    # bu sayede uydu dönse bile Dünya'nın içine girmez.
+    Viewpoint {
+      position 0.3 0.3 0.5   # Çok yakın ve çapraz
+      orientation -0.2 0.9 0.1 0.4
+      fieldOfView 1.2        # Geniş açı (balık gözü gibi)
+      description "GÜVENLİ TAKİP (KLİPSİZ)"
+    }
+    # Alternatif: Üstten Görünüm (Z ekseni için en iyisi)
+    Viewpoint {
+      position 0 0.6 0
+      orientation 1 0 0 -1.57
+      fieldOfView 1.0
+      description "ÜSTTEN TAKİP"
+    }
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 0.9 1
+          emissiveColor 0 0.4 0.5
+          shininess 0.8
+        }
+      }
+      geometry Box { size 0.15 0.15 0.15 }
+    }
+  ]
+}
+
+# DEBRIS 1 - Kirmizi (kucuk - 50 km)
+DEF DEBRIS1 Transform {
+  translation 8 0 1
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.1 0
+          emissiveColor 0.6 0.1 0
+        }
+      }
+      geometry Sphere { radius 0.05 }
+    }
+  ]
+}
+
+# DEBRIS 2 - Turuncu
+DEF DEBRIS2 Transform {
+  translation 8 0 -1
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.5 0
+          emissiveColor 0.6 0.3 0
+        }
+      }
+      geometry Sphere { radius 0.05 }
+    }
+  ]
+}
+
+# DEBRIS 3 - Sari
+DEF DEBRIS3 Transform {
+  translation 7 0 2
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.9 0
+          emissiveColor 0.6 0.5 0
+        }
+      }
+      geometry Sphere { radius 0.05 }
+    }
+  ]
+}
+
+# Yorunge
+DEF ORBIT Transform {
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.6 0.2
+          transparency 0.6
+        }
+      }
+      geometry Cylinder { radius 7 height 0.02 }
+    }
+  ]
+}
+
+# Tehlike Bolgesi (100 km = 0.1 Mm)
+DEF DANGER_ZONE Transform {
+  translation 7 0 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0 0
+          transparency 0.9
+        }
+      }
+      geometry Sphere { radius 0.1 }
+    }
+  ]
+}
+
+# KAMERA - Yukaridan
+Viewpoint {
+  position 0 20 15
+  orientation 1 0 0 -0.8
+  fieldOfView 0.9
+  description "Yukaridan Gorus"
+}
+
+# KAMERA - Yanlardan
+Viewpoint {
+  position 15 5 15
+  orientation 0 1 0 0.8
+  fieldOfView 0.8
+  description "Yan Gorus"
+}
+
+# KAMERA - Uzaktan
+Viewpoint {
+  position 0 30 30
+  orientation 1 0 0 -0.6
+  fieldOfView 0.6
+  description "Uzak Gorus"
+}
+
+# KAMERA - Yakin Takip (uyduyu daha iyi gormek icin)
+Viewpoint {
+  position 8 3 5
+  orientation 1 0 0 -0.3
+  fieldOfView 1.0
+  description "Yakin Takip"
+}
+
+# KAMERA - Ust Yakin
+Viewpoint {
+  position 7 8 0
+  orientation 1 0 0 -1.57
+  fieldOfView 0.8
+  description "Ust Yakin"
+}
